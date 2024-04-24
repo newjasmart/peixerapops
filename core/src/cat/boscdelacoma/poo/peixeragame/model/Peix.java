@@ -16,6 +16,8 @@ public class Peix {
     private int x;
     private int y;
     private Sex sex;
+    private int salut;
+    private int força;
     private int direcció;
     
     public Peix (int x,int y,Sex sex, int direcció) {
@@ -33,6 +35,34 @@ public class Peix {
         }
 
         x += direcció;
+    }
+    
+    public void combatre(Peix other) {
+        while (this.ésViu() && other.ésViu()) {
+            if (this.sex == other.sex) {
+                this.rebreDany(other.getForça());
+                other.rebreDany(this.getForça());
+            }
+        }
+    }
+    
+    public boolean ésViu() {
+        return this.salut > 0;
+    }
+    
+    public int getSalut() {
+        return this.salut;
+    }
+    
+    public void rebreDany(int dany) {
+        this.salut -= dany;
+        if (this.salut < 0) {
+            this.salut = 0;
+        }
+    }
+    
+    public int getForça() {
+        return this.força;
     }
     
      public void mostrar() {
