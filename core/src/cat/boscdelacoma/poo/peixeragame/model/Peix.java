@@ -4,11 +4,62 @@
  */
 package cat.boscdelacoma.poo.peixeragame.model;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.physics.box2d.Body;
+
 /**
  *
  * @author TimOliver
  */
 public class Peix {
+
+    public void setPare(Peix peixA) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void setMare(Peix peixA) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Object getBody() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Object getDireccio() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void setSprite(Sprite sprite) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void setBody(Body body) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void updateVelocity() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Peixera getPeixera() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void setDireccio(Direccio direccio) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void setDireccio(Direccio direccio) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void setPosition(int i, int i0) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void setPeixera(Peixera expResult) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     public enum Sex {
         MALE, FEMALE
     }
@@ -17,7 +68,6 @@ public class Peix {
     private int y;
     private Sex sex;
     private int salut;
-    private int força;
     private int direcció;
     
     public Peix (int x,int y,Sex sex, int direcció) {
@@ -40,8 +90,8 @@ public class Peix {
     public void combatre(Peix other) {
         while (this.ésViu() && other.ésViu()) {
             if (this.sex == other.sex) {
-                this.rebreDany(other.getForça());
-                other.rebreDany(this.getForça());
+                this.rebreDany(other.getDany());
+                other.rebreDany(this.getDany());
             }
         }
     }
@@ -61,8 +111,8 @@ public class Peix {
         }
     }
     
-    public int getForça() {
-        return this.força;
+    public int getDany() {
+        return 10; 
     }
     
      public void mostrar() {
@@ -70,14 +120,14 @@ public class Peix {
     }
     
     public static void main(String[] args) {
-        Peix peix1 = new Peix(0, 5,Peix.Sex.MALE, 1);
-        Peix peix2 = new Peix(10, 5,Peix.Sex.FEMALE, -1);
+        Peix peixA = new Peix(0, 5,Peix.Sex.MALE, 1);
+        Peix peixB = new Peix(10, 5,Peix.Sex.FEMALE, -1);
 
         for (int i = 0; i < 20; i++) {
-            peix1.nedar();
-            peix2.nedar();
-            peix1.mostrar();
-            peix2.mostrar();
+            peixA.nedar();
+            peixB.nedar();
+            peixA.mostrar();
+            peixB.mostrar();
             System.out.println();
         }
     }
