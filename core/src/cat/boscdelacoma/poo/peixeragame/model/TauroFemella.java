@@ -9,5 +9,9 @@ package cat.boscdelacoma.poo.peixeragame.model;
  * @author TimOliver
  */
 public class TauroFemella {
+
+    public TauroFemella(int numberBetween, int numberBetween0, Direccio value, Peixera peixera) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
