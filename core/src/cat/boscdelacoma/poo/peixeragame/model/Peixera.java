@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cat.boscdelacoma.poo.peixeragame.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,29 +8,38 @@ import java.util.List;
  * @author TimOliver
  */
 public class Peixera {
+    
+    private int amplada;
+    private int alt;
+    private List<Peix> peixos;
 
-    public Peixera(int x, int y) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Peixera(int amplada, int alt) {
+        this.amplada = amplada;
+        this.alt = alt;
+        this.peixos = new ArrayList<>();
     }
 
-    public void afegir(Peix crearPeixMascle) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void afegir(Peix peix) {
+        this.peixos.add(peix);
     }
 
+    public void afegir(List<Peix> peixosExtra) {
+        this.peixos.addAll(peixosExtra);
+    }
+    
     public int getAmplada() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.amplada;
     }
 
     public int getAlt() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.alt;
     }
 
-    List<Peix> getPeixos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Peix> getPeixos() {
+        return this.peixos;
     }
 
-    void esborrarPeix(Peix peix) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
+    public void esborrarPeix(Peix peix) {
+        this.peixos.remove(peix);
+    }   
 }

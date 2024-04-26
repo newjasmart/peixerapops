@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cat.boscdelacoma.poo.peixeragame.model;
 
+import cat.boscdelacoma.poo.peixeragame.physics.PeixeraModel;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.physics.box2d.Body;
 
@@ -12,8 +9,9 @@ import com.badlogic.gdx.physics.box2d.Body;
  * @author TimOliver
  */
 public class Peix {
-    private int x;
-    private int y;
+
+    private float x;
+    private float y;
     private Sex sex;
     private int salut;
     private Direccio direccio;
@@ -21,88 +19,169 @@ public class Peix {
     private Sprite sprite;
     private Peixera peixera;
 
-    public void setPare(Peix peixA) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Peix(int x, int y, Peixera peixera) {
+        this.x = x;
+        this.y = y;
+        this.peixera = peixera;   
     }
-
-    public void setMare(Peix peixA) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    
+    public Peix(int x, int y, Direccio direccio, Peixera peixera) {
+        this(x, y, peixera);
+        this.salut = 100;
+        this.direccio = direccio;
     }
 
     public Body getBody() {
         return body;
     }
 
-    public Direccio getDireccio() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     public void setBody(Body body) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.body = body;
     }
 
-    public void updateVelocity() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public Peixera getPeixera() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Direccio getDireccio() {
+        return direccio;
     }
 
     public void setDireccio(Direccio direccio) {
         this.direccio = direccio;
-                
+    }
+
+    public void updateVelocity() {
+        //Update the velocity of the body based on the direction
+        float vx = 0, vy = 0;
+        switch (direccio) {
+            case DRETA:
+                vx = 1;
+                break;
+            case ESQUERRA:
+                vx = -1;
+                break;
+            case AVALL:
+                vy = -1;
+                break;
+            case AMUNT:
+                vy = 1;
+                break;
+        }
+        body.setLinearVelocity(vx * PeixeraModel.VELOCITAT_PEIX, vy * PeixeraModel.VELOCITAT_PEIX);
+    }
+
+    public Peixera getPeixera() {
+        return peixera;
     }
 
     public void setPosition(float x, float y) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.x = (int) x;
+        this.y = (int) y;
+        body.setTransform(x, y, 0);
     }
 
-    public void setPeixera(Peixera expResult) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setPeixera(Peixera peixera) {
+        this.peixera = peixera;
     }
 
     public void canviDireccio() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        //Change the direction randomly
+        int dir = (int) (Math.random() * 8);
+        this.direccio = Direccio.values()[dir];
     }
 
-    float getX() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public float getX() {
+        return x;
     }
 
-    void setX(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setX(float x) {
+        this.x = x;
     }
 
-    float getY() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public float getY() {
+        return y;
     }
 
-    void setY(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    int getWidth() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setY(float y) {
+        this.y = y;
     }
 
-    void setWidth(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public float getWidth() {
+        return sprite.getWidth();
     }
 
-    short getHeight() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setWidth(float width) {
+        sprite.setSize(width, sprite.getHeight());
     }
 
-    void setHeigh(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public short getHeight() {
+        return (short) sprite.getHeight();
     }
 
-    Sprite getSprite() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setHeigh(int height) {
+        sprite.setSize(sprite.getWidth(), height);
     }
-    
+
+    public Sprite getSprite() {
+        return sprite;
+    }
+
     public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
+
+    public enum Sex {
+        MALE, FEMALE
+    }
+    
+    public Sex getSex() {
+        return sex;
+    }
+
+    public Peix(int x, int y, Sex sex, Direccio direccio) {
+        this.x = x;
+        this.y = y;
+        this.sex = sex;
+        this.direccio = direccio;
+    }
+
+    public void combatre(Peix other) {
+        while (this.esViu() && other.esViu()) {
+            if (this.sex == other.sex) {
+                this.rebreDany(other.getDany());
+                other.rebreDany(this.getDany());
+            }
+        }
+    }
+
+    public boolean esViu() {
+        return this.salut > 0;
+    }
+
+    public int getSalut() {
+        return this.salut;
+    }
+    
+    public void setSalut(int salut) {
+        this.salut = Math.max(0, Math.min(salut, 10));
+    }
+
+    public void rebreDany(int dany) {
+        this.salut -= dany;
+        if (this.salut < 0) {
+            this.salut = 0;
+        }
+    }
+
+    public int getDany() {
+        return 10;
+    }
+    
+
+    //Falta implementar
+    public void setPare(Peix peixA) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void setMare(Peix peixA) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -113,48 +192,4 @@ public class Peix {
     Peix getMare() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-    
-    public enum Sex {
-        MALE, FEMALE
-    }
-    
-    
-    public Peix (int x,int y,Sex sex, Direccio direccio) {
-        this.x = x;
-        this.y = y;
-        this.sex = sex;
-        this.direccio = direccio;
-    }
-    
-    
-    public void combatre(Peix other) {
-        while (this.esViu() && other.esViu()) {
-            if (this.sex == other.sex) {
-                this.rebreDany(other.getDany());
-                other.rebreDany(this.getDany());
-            }
-        }
-    }
-    
-    public boolean esViu() {
-        return this.salut > 0;
-    }
-    
-    public int getSalut() {
-        return this.salut;
-    }
-    
-    public void rebreDany(int dany) {
-        this.salut -= dany;
-        if (this.salut < 0) {
-            this.salut = 0;
-        }
-    }
-    
-    public int getDany() {
-        return 10; 
-    }
-    
-    
 }
