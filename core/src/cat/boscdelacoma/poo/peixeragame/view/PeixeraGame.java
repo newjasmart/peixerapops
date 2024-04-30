@@ -6,6 +6,7 @@ import cat.boscdelacoma.poo.peixeragame.model.Peix;
 import cat.boscdelacoma.poo.peixeragame.model.PeixFemella;
 import cat.boscdelacoma.poo.peixeragame.model.Peixera;
 import cat.boscdelacoma.poo.peixeragame.model.PeixMascle;
+import cat.boscdelacoma.poo.peixeragame.model.Pop;
 import cat.boscdelacoma.poo.peixeragame.model.TauroFemella;
 import cat.boscdelacoma.poo.peixeragame.model.TauroMascle;
 import cat.boscdelacoma.poo.peixeragame.utils.FileUtils;
@@ -36,6 +37,7 @@ public class PeixeraGame extends ApplicationAdapter {
     private Box2DDebugRenderer debugRenderer;
     private Texture background;
     private final int nTaurons;
+    private final int nPops;
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="COMPORTAMENT">
@@ -47,10 +49,12 @@ public class PeixeraGame extends ApplicationAdapter {
      * 
      * @param nPeixos quantitat de peixos que es volen crear
      * @param nTaurons quantitat de taurons que es volen crear
+     * @param nPops quantitat de pops que es volen crear
      */
-    public PeixeraGame(int nPeixos, int nTaurons) {
+    public PeixeraGame(int nPeixos, int nTaurons, int nPops) {
         this.nPeixos = nPeixos;
         this.nTaurons = nTaurons;
+        this.nPops = nPops;
     }
     //</editor-fold>
     
@@ -61,6 +65,7 @@ public class PeixeraGame extends ApplicationAdapter {
         peixera = new Peixera((int) PeixeraModel.WORLD_WIDTH, (int) PeixeraModel.WORLD_HEIGHT);
         PeixeraUtils.crearPeixos(peixera, nPeixos);
         PeixeraUtils.crearTaurons(peixera, nTaurons);
+        PeixeraUtils.crearPops(peixera, nPops);
         
         model = new PeixeraModel(peixera);
         debugRenderer = new Box2DDebugRenderer(true, true, true, true, true, true);
@@ -134,6 +139,8 @@ public class PeixeraGame extends ApplicationAdapter {
                 sprite = new Sprite(TextureFiles.TAURO_M_TEXTURE[peix.getDireccio().ordinal()]);
             } else if (peix instanceof TauroFemella) {
                 sprite = new Sprite(TextureFiles.TAURO_F_TEXTURE[peix.getDireccio().ordinal()]);
+            } else if (peix instanceof Pop) {
+                sprite = new Sprite(TextureFiles.OCTOPUS_TEXTURE[peix.getDireccio().ordinal()]);
             }
             float width = sprite.getWidth() * PeixeraModel.SCALE;
             float height = sprite.getHeight() * PeixeraModel.SCALE;
@@ -186,9 +193,10 @@ public class PeixeraGame extends ApplicationAdapter {
             sprite.setTexture(TextureFiles.PEIX_F_TEXTURE[peix.getDireccio().ordinal()]);
         } else if (peix instanceof TauroMascle) {
             sprite.setTexture(TextureFiles.TAURO_M_TEXTURE[peix.getDireccio().ordinal()]);
-            
         } else if (peix instanceof TauroFemella) {
             sprite.setTexture(TextureFiles.TAURO_F_TEXTURE[peix.getDireccio().ordinal()]);
+        } else if (peix instanceof Pop) {
+            sprite.setTexture(TextureFiles.OCTOPUS_TEXTURE[peix.getDireccio().ordinal()]);
         }
         sprite.draw(batch);
     }
