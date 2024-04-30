@@ -24,10 +24,9 @@ public class Peix {
     public Peix(int x, int y, Peixera peixera) {
         this.x = x;
         this.y = y;
-        this.peixera = peixera;   
+        this.peixera = peixera;
     }
-    
-    
+
     public Peix(int x, int y, Direccio direccio, Peixera peixera) {
         this(x, y, peixera);
         this.salut = 100;
@@ -55,18 +54,35 @@ public class Peix {
         float vx = 0, vy = 0;
         switch (direccio) {
             case DRETA:
-                vx = 1;
+                if(getBody().getPosition().x + getSprite().getWidth() >= getPeixera().getAmplada() - 0.2f ) {
+                    canviDireccio(); // Change direction when hitting the right wall
+                } else {
+                    vx = 1;
+                }
                 break;
             case ESQUERRA:
-                vx = -1;
-                break;
-            case AVALL:
-                vy = -1;
+                if(getBody().getPosition().x <= 0.2f ) {
+                    canviDireccio(); // Change direction when hitting the left wall
+                } else {
+                    vx = -1;
+                }
                 break;
             case AMUNT:
-                vy = 1;
+                if(getBody().getPosition().y + getSprite().getHeight() >= getPeixera().getAlt() - 0.2f ) {
+                    canviDireccio(); // Change direction when hitting the top wall
+                } else {
+                    vy = 1;
+                }
+                break;
+            case AVALL:
+                if(getBody().getPosition().y <= 0.2f ) {
+                    canviDireccio(); // Change direction when hitting the bottom wall
+                } else {
+                    vy = -1;
+                }
                 break;
         }
+
         body.setLinearVelocity(vx * PeixeraModel.VELOCITAT_PEIX, vy * PeixeraModel.VELOCITAT_PEIX);
     }
 
@@ -75,9 +91,8 @@ public class Peix {
     }
 
     public void setPosition(float x, float y) {
-        this.x = (int) x;
-        this.y = (int) y;
-        body.setTransform(x, y, 0);
+        setX(x);
+        setY(y);
     }
 
     public void setPeixera(Peixera peixera) {
@@ -86,24 +101,55 @@ public class Peix {
 
     public void canviDireccio() {
         //Change the direction randomly
-        int dir = (int) (Math.random() * 8);
-        this.direccio = Direccio.values()[dir];
+        switch (getDireccio()) {
+            case AMUNT:
+                setDireccio(Direccio.AVALL);
+                break;
+            case AVALL:
+                setDireccio(Direccio.AMUNT);
+                break;
+            case DRETA:
+                setDireccio(Direccio.ESQUERRA);
+                break;
+            case ESQUERRA:
+                setDireccio(Direccio.DRETA);
+                break;
+        }
+
     }
 
     public float getX() {
-        return x;
+        if(getBody() !=  null) {
+
+            return getBody().getPosition().x;
+        } else {
+            return x;
+        }
     }
 
     public void setX(float x) {
         this.x = x;
+        if(getBody() !=  null) {
+            getBody().getPosition().x = x;
+            updateVelocity();
+        }
     }
 
     public float getY() {
-        return y;
+        if(getBody() !=  null) {
+
+            return getBody().getPosition().y;
+        } else {
+            return y;
+        }
     }
 
     public void setY(float y) {
         this.y = y;
+        if(getBody() !=  null) {
+            getBody().getPosition().y = y;
+            updateVelocity();
+        }
     }
 
     public float getWidth() {
@@ -133,7 +179,7 @@ public class Peix {
     public enum Sex {
         MALE, FEMALE
     }
-    
+
     public Sex getSex() {
         return sex;
     }
@@ -161,7 +207,7 @@ public class Peix {
     public int getSalut() {
         return this.salut;
     }
-    
+
     public void setSalut(int salut) {
         this.salut = Math.max(0, Math.min(salut, 10));
     }
@@ -176,23 +222,22 @@ public class Peix {
     public int getDany() {
         return 10;
     }
-    
 
     //Falta implementar
     public void setPare(Peix peixA) {
         this.pare = pare;
-        }
+    }
 
     public void setMare(Peix peixA) {
         this.mare = mare;
-        }
+    }
 
     Peix getPare() {
         return this.pare;
-        }
+    }
 
     Peix getMare() {
         return this.mare;
-        }
-    
+    }
+
 }
