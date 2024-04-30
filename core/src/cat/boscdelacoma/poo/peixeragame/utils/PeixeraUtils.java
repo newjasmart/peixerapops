@@ -41,7 +41,7 @@ public class PeixeraUtils {
     public static Peix crearPop(Peixera peixera) {
         return new Pop(NumberUtils.getNumberBetween(0, peixera.getAmplada()),
                 NumberUtils.getNumberBetween(0, peixera.getAlt()),
-                Direccio.values()[NumberUtils.getNumberBetween(0, Direccio.values().length - 1)],
+                Direccio.values()[NumberUtils.getNumberBetween(0, 1) == 0 ? 0 : 1], // Que només pugui anar a l'esquerra (0) o a la dreta (1)
                 peixera);
     }
 
