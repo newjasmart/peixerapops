@@ -43,7 +43,7 @@ public class PeixeraModel implements ContactListener {
     public static final float WORLD_WIDTH = 66.5f;
     public static final float WORLD_HEIGHT = 50;
     //</editor-fold>
-    public static float VELOCITAT_PEIX = 1f; //Ajustar en cas d'nar massa rapid o lent
+    public static float VELOCITAT_PEIX = 5f; //Ajustar en cas d'Anar massa rapid o lent
 
     //<editor-fold defaultstate="collapsed" desc="ATRIBUTS">
     private final World world;
