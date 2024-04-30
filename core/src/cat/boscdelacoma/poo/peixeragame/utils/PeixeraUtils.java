@@ -39,11 +39,11 @@ public class PeixeraUtils {
     }
     
     public static Peix crearPop(Peixera peixera) {
-        return new Pop(NumberUtils.getNumberBetween(0, peixera.getAmplada()),
-                NumberUtils.getNumberBetween(0, peixera.getAlt()),
-                Direccio.values()[NumberUtils.getNumberBetween(0, 1) == 0 ? 0 : 1], // Que només pugui anar a l'esquerra (0) o a la dreta (1)
-                peixera);
-    }
+    return new Pop(NumberUtils.getNumberBetween(0, peixera.getAmplada()),
+            74, //Altura del pop per que surti just al borde de baix de la peixera
+            Direccio.values()[NumberUtils.getNumberBetween(0, 1) == 0 ? 0 : 1], // Anar a la dreta (0) o a l'esquerra (1)
+            peixera);
+}
 
     /**
      * Crea una quanitat de peixos mascle a la peixera.
