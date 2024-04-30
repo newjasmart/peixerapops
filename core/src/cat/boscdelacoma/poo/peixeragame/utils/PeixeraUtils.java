@@ -8,6 +8,7 @@ import cat.boscdelacoma.poo.peixeragame.model.Peixera;
 import cat.boscdelacoma.poo.peixeragame.model.Tauro;
 import cat.boscdelacoma.poo.peixeragame.model.TauroFemella;
 import cat.boscdelacoma.poo.peixeragame.model.TauroMascle;
+import cat.boscdelacoma.poo.peixeragame.model.Pop;
 
 /**
  * Classe de suport a la peixera
@@ -26,6 +27,22 @@ public class PeixeraUtils {
     public static void crearPeixos(Peixera peixera, int quantitat) {
         crearPeixosMascle(peixera, quantitat / 2);
         crearPeixosFemella(peixera, quantitat / 2);
+    }
+    
+    
+    //Crear pops
+    
+    public static void crearPops(Peixera peixera, int quantitat) {
+        for (int i = 0; i < quantitat; i++) {
+            peixera.afegir(crearPop(peixera));
+        }
+    }
+    
+    public static Peix crearPop(Peixera peixera) {
+        return new Pop(NumberUtils.getNumberBetween(0, peixera.getAmplada()),
+                NumberUtils.getNumberBetween(0, peixera.getAlt()),
+                Direccio.values()[NumberUtils.getNumberBetween(0, Direccio.values().length - 1)],
+                peixera);
     }
 
     /**

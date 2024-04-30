@@ -32,4 +32,10 @@ public class TextureFiles {
         new Texture("tauroFDreta.png"),
         new Texture("tauroFAmunt.png"),
         new Texture("tauroFAvall.png")};
+    
+    public static final Texture[] OCTOPUS_TEXTURE = {
+        new Texture("octopus.png"),
+        new Texture("octopus.png"),
+        new Texture("octopus.png"),
+        new Texture("octopus.png")};
 }

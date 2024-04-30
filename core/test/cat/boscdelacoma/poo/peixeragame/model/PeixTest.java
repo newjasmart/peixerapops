@@ -1,10 +1,7 @@
 package cat.boscdelacoma.poo.peixeragame.model;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -40,8 +37,9 @@ public class PeixTest {
         
         instance = new PeixImpl();
         expResult = new Peixera(10, 10);
+        //world = new World(new Vector2(0, 0), true);
         //body = world.createBody(new BodyDef());
-        //instance.setBody(body);
+        instance.setBody(body);
         instance.setDireccio(Direccio.DRETA);
         instance.setPosition(1, 1);
     }
@@ -93,7 +91,7 @@ public class PeixTest {
     @Test
     public void testGetWidth() {
         instance.setWidth(10);
-        int result = instance.getWidth();
+        float result = instance.getWidth();
         assertEquals(10, result);
     }
 

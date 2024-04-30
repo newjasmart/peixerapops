@@ -18,6 +18,8 @@ public class Peix {
     private Body body;
     private Sprite sprite;
     private Peixera peixera;
+    private Peix mare;
+    private Peix pare;
 
     public Peix(int x, int y, Peixera peixera) {
         this.x = x;
@@ -178,18 +180,19 @@ public class Peix {
 
     //Falta implementar
     public void setPare(Peix peixA) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        this.pare = pare;
+        }
 
     public void setMare(Peix peixA) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        this.mare = mare;
+        }
 
     Peix getPare() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        return this.pare;
+        }
 
     Peix getMare() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        return this.mare;
+        }
+    
 }

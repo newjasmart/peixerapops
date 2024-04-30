@@ -43,6 +43,7 @@ public class PeixeraModel implements ContactListener {
     public static final float WORLD_WIDTH = 66.5f;
     public static final float WORLD_HEIGHT = 50;
     //</editor-fold>
+    public static float VELOCITAT_PEIX = 5f; //Ajustar en cas d'nar massa rapid o lent
 
     //<editor-fold defaultstate="collapsed" desc="ATRIBUTS">
     private final World world;
@@ -232,7 +233,7 @@ public class PeixeraModel implements ContactListener {
         // si dos peixos o taurons del mateix sexe es toquen -> es moren tots dos
         if (peixA != null && peixB != null
                 && ((peixA instanceof PeixMascle && peixB instanceof PeixMascle)
-                || (peixB instanceof PeixFemella && peixA instanceof PeixFemella)
+                || (peixB instanceof PeixFemella && peixA instanceof PeixFemella) 
                 || (peixA instanceof TauroMascle && peixB instanceof TauroMascle)
                 || (peixB instanceof TauroFemella && peixA instanceof TauroFemella))) {
             
