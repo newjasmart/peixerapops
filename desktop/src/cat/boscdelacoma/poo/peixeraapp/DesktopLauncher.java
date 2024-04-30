@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 public class DesktopLauncher {
 
     public static void main(String[] arg) {
-        int nPeixos, nTaurons = 0;
+        int nPeixos, nTaurons, nPops = 0;
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         config.setForegroundFPS(60);
         config.setTitle("Peixera Game");
@@ -26,7 +26,12 @@ public class DesktopLauncher {
                 if (nTaurons < 0 || nTaurons > 100) {
                     JOptionPane.showMessageDialog(null, "El valor no és vàlid. No pot ser menor a 0 ni major a 100", "Error en l'entrada", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    new Lwjgl3Application(new PeixeraGame(nPeixos, nTaurons), config);
+                    nPops = Integer.parseInt(JOptionPane.showInputDialog(null, "Vols crear un pop?", "Peixera", JOptionPane.QUESTION_MESSAGE));
+                    if (nPops < 0 || nPops > 1) {
+                        JOptionPane.showMessageDialog(null, "El valor no és vàlid. No pot ser menor a 0 ni major a 1", "Error en l'entrada", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        new Lwjgl3Application(new PeixeraGame(nPeixos, nTaurons, nPops), config);
+                    }
                 }
             }
 
