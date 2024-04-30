@@ -40,7 +40,7 @@ public class PeixeraUtils {
     
     public static Peix crearPop(Peixera peixera) {
     return new Pop(NumberUtils.getNumberBetween(0, peixera.getAmplada()),
-            74, //Altura del pop per que surti just al borde de baix de la peixera
+            0, //Altura a 0 perqué surti al borde de baix de la peixera
             Direccio.values()[NumberUtils.getNumberBetween(0, 1) == 0 ? 0 : 1], // Anar a la dreta (0) o a l'esquerra (1)
             peixera);
 }
